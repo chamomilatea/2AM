@@ -1,10 +1,9 @@
 function setup() {
-  createCanvas(window.innerWidth, 1000);
-  background(0);
+  createCanvas(windowWidth, windowHeight);
 }
 
 function draw() {
-  background(0); // Clear the background each frame
+  background(0, 0, 0, 0); // Clear the background each frame
   addGrain(); // Add grain effect
 }
 

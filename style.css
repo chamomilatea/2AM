@@ -29,6 +29,7 @@ canvas {
   height: 100vh;
   z-index: 0; /* Ensure it is behind other content but above the background image */
 }
+
 main {
   display: flex;
   flex-direction: column;
@@ -61,58 +62,4 @@ h1 {
 
 .navigate-button:hover {
   background-color: #0056b3; /* Darker shade on hover */
-} width: 100%;
-  z-index: 1; /* Ensure it is above the canvas */
-}
-
-h1 {
-  color: white; /* Adjust color as needed */
-  font-family: 'Mukta', sans-serif; /* Apply the font to the h1 element */
-  font-weight: 700; /* Use bold weight */
-  margin-bottom: 20px; /* Add some space below the h1 */
-}
-
-.navigate-button {
-  padding: 10px 20px;
-  font-size: 16px;
-  font-family: 'Mukta', sans-serif;
-  font-weight: 700;
-  color: white;
-  background-color: #007BFF; /* Button background color */
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.navigate-button:hover {
-  background-color: #0056b3; /* Darker shade on hover */
-}
-
-.full-screen-image {
-  width: 100vw;
-  height: 100vh;
-  object-fit: cover; /* Ensures the image covers the entire area without distortion */
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1; /* Places the image behind other content */
-}
-
-canvas {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 0; /* Ensure it is behind other content but above the background image */
-}
-
-main {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  width: 100%;
-  z-index: 1; /* Ensure it is above the canvas */
 }

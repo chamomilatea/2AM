@@ -22,23 +22,22 @@ body, html {
 }
 
 canvas {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 0; /* Ensure it is behind other content but above the background image */
+  /* SYD: you only need this here, the other 
+  stuff was messing with the rest of your css file */
+  display: block;
 }
 
+/* Syd: Not sure we need this
 main {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100%;
-  width: 100%;
-  z-index: 1; /* Ensure it is above the canvas */
+  width: 100%; 
+  
 }
+  */
 
 h1 {
   color: white; /* Adjust color as needed */
@@ -58,6 +57,15 @@ h1 {
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
+
+  top: 50%; /* SYD: (you may want to change the position)Position it 50% from the top */
+  left: 50%; /* SYD: Position it 50% from the left */
+  position: absolute; /* Syd: had to add this to make z index work */
+  z-index: 0; /* Ensure it's behind canvas and 
+                  above the image */
+
+  
+  
 }
 
 .navigate-button:hover {

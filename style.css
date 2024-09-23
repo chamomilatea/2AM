@@ -51,23 +51,23 @@ h1 {
   font-size: 16px;
   font-family: 'Mukta', sans-serif;
   font-weight: 700;
-  color: white;
-  background-color: #007BFF; /* Button background color */
+  color: rgb(214, 214, 214);
+  background-color: #254747; /* Button background color */
   border: none;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
 
-  top: 50%; /* SYD: (you may want to change the position)Position it 50% from the top */
-  left: 50%; /* SYD: Position it 50% from the left */
+  top: 60vh; /* SYD: (you may want to change the position)Position it 50% from the top */
+  left: 80vw; /* SYD: Position it 50% from the left */
   position: absolute; /* Syd: had to add this to make z index work */
   z-index: 0; /* Ensure it's behind canvas and 
                   above the image */
 
-  
+  transform: rotate(-29deg);
   
 }
 
 .navigate-button:hover {
-  background-color: #0056b3; /* Darker shade on hover */
+  background-color: #689c94; /* lighter shade on hover */
 }

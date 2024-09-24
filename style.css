@@ -82,3 +82,21 @@ h1 {
 .navigate-button:hover {
   background-color: #689c94; /* lighter shade on hover */
 }
+
+/* Add styles for the next page button */
+.next-page-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  font-family: 'Mukta', sans-serif;
+  font-weight: 700;
+  color: white;
+  background-color: #ffef0c; /* Button background color */
+  border: none;
+  border-radius: 10%; /* Make the button circular */
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.next-page-button:hover {
+  background-color: #f5e6a2; /* Darker shade on hover */
+}

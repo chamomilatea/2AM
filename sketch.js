@@ -13,7 +13,7 @@ function preload(){
 }
 let pageThreeImage;
 let pageThreeOn = false; // need this to toggle things on and off
-let button; //need to make this global cause we use it in draw & setup
+
 function preload(){
 
   pageThreeImage = loadImage('Images/eerieaisle.png');
@@ -36,10 +36,13 @@ function setup() {
   button = select("button");
   button.mousePressed(pageTwo); //Create a page 2
 
-  background(0, 0, 0, 0.5); // Clear the background each frame
+   // Create a new button for page two
+   buttonPageTwo = createButton('Next Page');
+   buttonPageTwo.position(100, 100); // Adjust position as needed
+   buttonPageTwo.mousePressed(pageThree); // Create a page 3
+   buttonPageTwo.hide(); // Initially hide the button
 
-  button = select("button");
-  button.mousePressed(pageThree); //Create a page 3
+  background(0, 0, 0, 0.5); // Clear the background each frame
 
 
 }
@@ -49,12 +52,11 @@ function draw() {
   if(!pageTwoOn){ //if page 2 is not on
   addGrain(); // Add grain effect
   button.style('display', 'block') //this styles the button using p5 instead of css
-  
+  buttonPageTwo.hide(); // Hide the page two button
   } else {
     button.style('display', 'none') //hide the button
+    buttonPageTwo.show(); // Show the page two button
   }
-
-
 }
 
 function windowResized() {
@@ -85,8 +87,10 @@ function pageTwo() {
   pageTwoOn = true;
   //Syd: Display the image
   image(pageTwoImage, 0, 0, width, height); //image, x,y,width,height
-  
-
+}
+function pageThree() {
+  pageThreeOn = true;
+  background(pageThreeImage); // Display the page three image
 }
 
 // function changeImage() {

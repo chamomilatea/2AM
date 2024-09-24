@@ -11,6 +11,13 @@ function preload(){
   pageTwoImage = loadImage('Images/walkable.png');
 
 }
+let pageThreeImage;
+let pageThreeOn = false; // need this to toggle things on and off
+let button; //need to make this global cause we use it in draw & setup
+function preload(){
+
+  pageThreeImage = loadImage('Images/eerieaisle.png');
+}
 
 function setup() {
   
@@ -30,6 +37,10 @@ function setup() {
   button.mousePressed(pageTwo); //Create a page 2
 
   background(0, 0, 0, 0.5); // Clear the background each frame
+
+  button = select("button");
+  button.mousePressed(pageThree); //Create a page 3
+
 
 }
 

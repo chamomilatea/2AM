@@ -9,18 +9,26 @@
   </head>
   <body>
     <main>
-      <button class="navigate-button" onclick="changeImage()">Go to Next Image</button>
+      <button class="navigate-button" onclick="changeImage()">Start shopping</button>
     </main>
     
     <script src="sketch.js"></script>
-    <img id="background-image" src="Images/clicktostartpage.jpg" alt="place holder for own design" class="full-screen-image" />
-    <script>
+    <img id="background-image" src="Images/hopefullybetterfirstpage.png" alt="place holder for own design" class="full-screen-image" />
+    <img id="overlay-image" src="Images/question mark.png" alt="question Image 1" class="overlay-image hidden" /> <!-- Add the overlay image -->
+    <img id="overlay-image-2" src="Images/question mark.png" alt="question Image 2" class="overlay-image hidden" />
+    <img id="overlay-image-3" src="Images/question mark.png" alt="question Image 3" class="overlay-image hidden" />
+   <script>
       function changeImage() {
         const img = document.getElementById('background-image');
         img.style.opacity = 0; // Start fade out
         setTimeout(() => {
-          img.src = 'Images/topdowngroceryselectyourgroceryitem.jpg'; // Change to the next image
+          img.src = 'Images/walkable.png'; // Change to the next image
+          img.onload = () => {
           img.style.opacity = 1; // Fade in
+          document.getElementById('overlay-image').classList.remove('hidden'); // Show the overlay image
+          document.getElementById('overlay-image-2').classList.remove('hidden'); // Show the second overlay image
+          document.getElementById('overlay-image-3').classList.remove('hidden'); // Show the third overlay image
+          };
         }, 500); // Adjust the timeout to match the transition duration
       }
     </script>

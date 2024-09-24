@@ -21,23 +21,34 @@ body, html {
   transition: opacity 0.5s ease-in-out; /* Smooth transition for opacity */
 }
 
-canvas {
-  /* SYD: you only need this here, the other 
-  stuff was messing with the rest of your css file */
-  display: block;
+.overlay-image {
+ position: absolute;
+  width: 50px;
+  height: 60px;
+  z-index: 1; /* Ensure it is above the background image */
 }
 
-/* Syd: Not sure we need this
-main {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  width: 100%; 
-  
+#overlay-image-1 {
+  top: 30%;
+  left: 60%;
 }
-  */
+
+#overlay-image-2 {
+  top: 40%;
+  left: 65%;
+}
+
+#overlay-image-3 {
+  top: 50%;
+  left: 70%;
+}
+.hidden {
+  display:none;
+}
+
+canvas {
+  display: block;
+}
 
 h1 {
   color: white; /* Adjust color as needed */

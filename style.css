@@ -89,8 +89,8 @@ h1 {
   font-size: 16px;
   font-family: 'Mukta', sans-serif;
   font-weight: 700;
-  color: white;
-  background-color: #ffef0c; /* Button background color */
+  color: rgb(0, 0, 0);
+  background-color: #ffee00; /* Button background color */
   border: none;
   border-radius: 10%; /* Make the button circular */
   cursor: pointer;
@@ -98,5 +98,5 @@ h1 {
 }
 
 .next-page-button:hover {
-  background-color: #f5e6a2; /* Darker shade on hover */
+  background-color: #162921; /* Darker shade on hover */
 }

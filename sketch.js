@@ -37,7 +37,7 @@ function setup() {
   button.mousePressed(pageTwo); //Create a page 2
 
    // Create a new button for page two
-   buttonPageTwo = createButton('Next Page');
+   buttonPageTwo = createButton("?");
    buttonPageTwo.position(100, 100); // Adjust position as needed
    buttonPageTwo.mousePressed(pageThree); // Create a page 3
    buttonPageTwo.hide(); // Initially hide the button

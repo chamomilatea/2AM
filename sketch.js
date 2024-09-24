@@ -14,6 +14,7 @@ let zoomingIn = false; // Track whether we are zooming in
 let fadeToBlack = false; // Track whether we are fading to black
 let fadeOpacity = 0; // Opacity for the fade effect
 let showText = false; // Track whether to show the "2AM" text
+let showNextText = false; // Track whether to show the new text
 
 function preload() {
   pageTwoImage = loadImage('Images/walkable.png');
@@ -30,7 +31,7 @@ function setup() {
   button = select("button");
   button.mousePressed(pageTwo); 
 
-  buttonPageTwo = createButton("?"); 
+  buttonPageTwo = createButton("tomat03S"); 
   buttonPageTwo.position(100, 100);
   buttonPageTwo.mousePressed(pageThree); 
   buttonPageTwo.hide(); 
@@ -44,10 +45,12 @@ function draw() {
     button.style('display', 'block');
     buttonPageTwo.hide(); 
   } else if (pageTwoOn) {
+    addGrain();
     button.style('display', 'none');
     buttonPageTwo.show(); 
     image(pageTwoImage, 0, 0, width, height);
   } else if (pageThreeOn) {
+    addGrain();
     button.style('display', 'none');
     buttonPageTwo.hide();
     background(pageThreeImage);
@@ -91,6 +94,9 @@ function draw() {
       if (fadeOpacity >= 255) {
         fadeOpacity = 255; // Cap opacity
         showText = true; // Show the text after fade
+        setTimeout(() => {
+          showNextText = true; // Show the next text after 2 seconds
+        }, 2000);
       }
       fill(0, fadeOpacity); // Set fill color to black with current opacity
       rect(0, 0, width, height); // Draw the rectangle over the entire canvas
@@ -102,6 +108,14 @@ function draw() {
       fill(255); // Set text color to white
       textAlign(CENTER, CENTER); // Center the text
       text("2AM", width / 2, height / 2); // Draw the text
+    }
+
+// Draw the next text if it should be shown
+if (showNextText) {
+    textSize(32); // Set text size for the next text
+    fill(255); // Set text color to white
+    textAlign(CENTER, CENTER); // Center the text
+    text("nothing good ever happens after", width / 2, height / 2 - 50); // Draw the next text above "2AM"
     }
   }
 }
@@ -136,7 +150,9 @@ function pageTwo() {
   fadeToBlack = false; // Reset fade state
   fadeOpacity = 0; // Reset fade opacity
   showText = false; // Reset text visibility
+  showNextText = false; // Reset next text visibility
   clearTimeout(creepTimeout); // Clear any existing timeout
+  addGrain(); // Apply grain effect when switching to page two
 }
 
 function pageThree() {
@@ -149,5 +165,7 @@ function pageThree() {
   fadeToBlack = false; // Reset fade state
   fadeOpacity = 0; // Reset fade opacity
   showText = false; // Reset text visibility
+  showNextText = false; // Reset next text visibility
   clearTimeout(creepTimeout); // Clear any existing timeout
+  addGrain(); // Apply grain effect when switching to page three
 }

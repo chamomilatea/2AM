@@ -1,37 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/p5.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/addons/p5.sound.min.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;700&display=swap" rel="stylesheet">
     <meta charset="utf-8" />
-  </head>
-  <body>
-    <main>
-      <button class="navigate-button" onclick="changeImage()">Start shopping</button>
-    </main>
-    
+</head>
+<body>
+    <button class="navigate-button" onclick="changeImage()">Start shopping</button>    
     <script src="sketch.js"></script>
     <img id="background-image" src="Images/hopefullybetterfirstpage.png" alt="place holder for own design" class="full-screen-image" />
-    <!--<img id="overlay-image-1" src="Images/question mark.png" alt="question Image 1" class="overlay-image hidden" /> Add the overlay image
-    <img id="overlay-image-2" src="Images/question mark.png" alt="question Image 2" class="overlay-image hidden" />
-    <img id="overlay-image-3" src="Images/question mark.png" alt="question Image 3" class="overlay-image hidden" />-->
-   <script>
-      function changeImage() {
-        const img = document.getElementById('background-image');
-        img.style.opacity = 0; // Start fade out
-        setTimeout(() => {
-          img.src = 'Images/walkable.png'; // Change to the next image
-          img.onload = () => {
-          img.style.opacity = 1; // Fade in
-          /*document.getElementById('overlay-image-1').classList.remove('hidden'); // Show the overlay image
-          document.getElementById('overlay-image-2').classList.remove('hidden'); // Show the second overlay image
-          document.getElementById('overlay-image-3').classList.remove('hidden'); // Show the third overlay image*/
-          };
-        }, 500); // Adjust the timeout to match the transition duration
-      }
+    
+    <script>
+        function changeImage() {
+            const img = document.getElementById('background-image');
+            img.style.opacity = 0; // Start fade out
+            setTimeout(() => {
+                img.src = 'Images/walkable.png'; // Change to the next image
+                img.onload = () => {
+                    img.style.opacity = 1; // Fade in
+                };
+            }, 500); // Adjust the timeout to match the transition duration
+        }
     </script>
     <p></p>
-  </body>
+</body>
 </html>

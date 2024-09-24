@@ -28,20 +28,6 @@ body, html {
   z-index: 1; /* Ensure it is above the background image */
 }
 
-#overlay-image-1 {
-  top: 400px;
-  left: 500px;
-}
-
-#overlay-image-2 {
-  top: 200px;
-  left: 500px;
-}
-
-#overlay-image-3 {
-  top: 900px;
-  left: 300px;
-}
 .hidden {
   display:none;
 }
@@ -84,7 +70,7 @@ h1 {
 }
 
 /* Add styles for the next page button */
-.next-page-button {
+.TOMAT03S-button {
   padding: 10px 20px;
   font-size: 16px;
   font-family: 'Mukta', sans-serif;
@@ -97,6 +83,6 @@ h1 {
   transition: background-color 0.3s;
 }
 
-.next-page-button:hover {
-  background-color: #162921; /* Darker shade on hover */
+.TOMAT0ES-button:hover {
+  background-color: #00ff95; /* Darker shade on hover */
 }

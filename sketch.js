@@ -1,70 +1,65 @@
-
-//SYD: just switch to p5.js for the rest of the class
-//We've suffered enough with HTML and CSS :)
-//Need preload function to load images
-//Design tip: I would make the transparency of grain effect lower
 let pageTwoImage;
-let pageTwoOn = false; // need this to toggle things on and off
-let button; //need to make this global cause we use it in draw & setup
-function preload(){
-
-  pageTwoImage = loadImage('Images/walkable.png');
-
-}
+let pageTwoOn = false;
 let pageThreeImage;
-let pageThreeOn = false; // need this to toggle things on and off
+let pageThreeOn = false; 
+let overlayImage; // Variable for the overlay image
+let button; 
+let buttonPageTwo; 
+let overlayShown = false; // Track whether the overlay is shown
 
-function preload(){
-
+function preload() {
+  pageTwoImage = loadImage('Images/walkable.png');
   pageThreeImage = loadImage('Images/eerieaisle.png');
+  overlayImage = loadImage('Images/handleholdingtomatoe.png'); // Load the overlay image
 }
 
 function setup() {
-  
   createCanvas(windowWidth, windowHeight);
-  //Syd: added colorMode hue,sat,brightness
   colorMode(HSB);
-
-  //SYD: I totally forgot about pixel density!!
-  //So you need this to set the density of your pixel to 1 because depending
-  //on what screen you view the piece on, the default pixel density will be different
-  //since you are using pixles to create your grain effect, you need this. 
-  //That's why it worked on VS Code and not on the browser.
-  pixelDensity(1); // Set the pixel density to 1 for better performance
+  pixelDensity(1);
   
-  //Syd: I'll get you started with the button code and let you finish it
   button = select("button");
-  button.mousePressed(pageTwo); //Create a page 2
+  button.mousePressed(pageTwo); 
 
-   // Create a new button for page two
-   buttonPageTwo = createButton("?");
-   buttonPageTwo.position(100, 100); // Adjust position as needed
-   buttonPageTwo.mousePressed(pageThree); // Create a page 3
-   buttonPageTwo.hide(); // Initially hide the button
+  buttonPageTwo = createButton("?");
+  buttonPageTwo.position(100, 100);
+  buttonPageTwo.mousePressed(pageThree); 
+  buttonPageTwo.hide(); 
 
-  background(0, 0, 0, 0.5); // Clear the background each frame
-
-
+  background(0, 0, 0, 0.5);
 }
 
 function draw() {
+  if (!pageTwoOn && !pageThreeOn) {
+    addGrain();
+    button.style('display', 'block');
+    buttonPageTwo.hide(); 
+  } else if (pageTwoOn) {
+    button.style('display', 'none');
+    buttonPageTwo.show(); 
+    image(pageTwoImage, 0, 0, width, height);
+  } else if (pageThreeOn) {
+    button.style('display', 'none');
+    buttonPageTwo.hide();
+    background(pageThreeImage);
+    
+    // Show the overlay after 5 seconds if it's not already shown
+    if (!overlayShown) {
+      setTimeout(() => {
+        overlayShown = true; // Mark the overlay as shown
+      }, 5000);
+    }
 
-  if(!pageTwoOn){ //if page 2 is not on
-  addGrain(); // Add grain effect
-  button.style('display', 'block') //this styles the button using p5 instead of css
-  buttonPageTwo.hide(); // Hide the page two button
-  } else {
-    button.style('display', 'none') //hide the button
-    buttonPageTwo.show(); // Show the page two button
+    // Draw the overlay image if it's shown
+    if (overlayShown) {
+      image(overlayImage, 0, 0, width, height); // Display the overlay image
+    }
   }
 }
 
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
-  addGrain(); // Add grain effect
-
-  //Syd:Not sure we need redraw here
-  //redraw(); // Redraw the canvas after resizing
+  addGrain();
 }
 
 function addGrain() {
@@ -72,32 +67,24 @@ function addGrain() {
   for (let x = 0; x < width; x++) {
     for (let y = 0; y < height; y++) {
       let index = (x + y * width) * 4;
-      let grain = random(0, 225); //black&white
-      pixels[index] = grain; // Red
-      pixels[index + 1] = grain; // Green
-      pixels[index + 2] = grain; // Blue
-      pixels[index + 3] = 50; // Alpha (transparency)
+      let grain = random(0, 225);
+      pixels[index] = grain;
+      pixels[index + 1] = grain;
+      pixels[index + 2] = grain;
+      pixels[index + 3] = 50; 
     }
   }
   updatePixels();
 }
 
 function pageTwo() {
-  //Create a boolean to toggle things on and off (like the grain and button)
   pageTwoOn = true;
-  //Syd: Display the image
-  image(pageTwoImage, 0, 0, width, height); //image, x,y,width,height
-}
-function pageThree() {
-  pageThreeOn = true;
-  background(pageThreeImage); // Display the page three image
+  pageThreeOn = false; // Reset pageThreeOn when going to pageTwo
+  overlayShown = false; // Reset overlay when switching pages
 }
 
-// function changeImage() {
-//   const img = document.getElementById('background-image');
-//   img.style.opacity = 0; // Start fade out
-//   setTimeout(() => {
-//     img.src = 'Images/topdowngroceryselectyourgroceryitem.jpg'; // Change to the next image
-//     img.style.opacity = 1; // Fade in
-//   }, 500); // Adjust the timeout to match the transition duration
-// }
+function pageThree() {
+  pageThreeOn = true;
+  pageTwoOn = false; // Reset pageTwoOn when going to pageThree
+  overlayShown = false; // Reset overlay when switching pages
+}

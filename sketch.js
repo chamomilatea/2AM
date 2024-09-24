@@ -1,21 +1,22 @@
-let pageTwoImage;
+let pageTwoImage; 
 let pageTwoOn = false;
 let pageThreeImage;
 let pageThreeOn = false; 
-let overlayImage; // Variable for the overlay image
-let creepImage, handleHoldingTomatoeImage; // Variable for the creep image
-let overlayShown = false; // Track whether the overlay is shown
-let creepShown = false; // Track whether the creep is shown
+let overlayImage; 
+let creepImage; // Variable for the creep image
 let button; 
 let buttonPageTwo; 
-let overlayShown = false; // Track whether the overlay is shown
+let overlayShown = false; 
+let creepShown = false; // Track whether the creep image is shown
+let creepTimeout; // To store the timeout ID for the creep image
 
 function preload() {
   pageTwoImage = loadImage('Images/walkable.png');
   pageThreeImage = loadImage('Images/eerieaisle.png');
-  overlayImage = loadImage('Images/handleholdingtomatoe.png'); // Load the overlay image
+  overlayImage = loadImage('Images/handleholdingtomatoe.png'); 
   creepImage = loadImage('Images/creep1.png'); // Load the creep image
 }
+
 function setup() {
   createCanvas(windowWidth, windowHeight);
   colorMode(HSB);
@@ -30,7 +31,6 @@ function setup() {
   buttonPageTwo.hide(); 
 
   background(0, 0, 0, 0.5);
-} background(0, 0, 0, 0.5);
 }
 
 function draw() {
@@ -51,21 +51,22 @@ function draw() {
     if (!overlayShown) {
       setTimeout(() => {
         overlayShown = true; // Mark the overlay as shown
-                
-        // Show the creep image 2 seconds after the overlay image
-        setTimeout(() => {
-          creepShown = true;
+        // Show the creep image 2 seconds after the overlay is shown
+        creepTimeout = setTimeout(() => {
+          creepShown = true; // Mark the creep image as shown
         }, 2000);
-      }, 5000);
+      }, 2000);
     }
-    
+
     // Draw the overlay image if it's shown
     if (overlayShown) {
       image(overlayImage, 0, 0, width, height); // Display the overlay image
     }
-      // Draw the creep image if shown
-      if (creepShown) {
-        image(creepImage, 0, 0, width, height); // Display the creep
+
+    // Draw the creep image if it's shown
+    if (creepShown) {
+      image(creepImage, 0, 0, width, height); // Display the creep image
+    }
   }
 }
 
@@ -91,42 +92,16 @@ function addGrain() {
 
 function pageTwo() {
   pageTwoOn = true;
-  pageThreeOn = false; // Reset pageThreeOn when going to pageTwo
-  overlayShown = false; // Reset overlay when switching pages
+  pageThreeOn = false; 
+  overlayShown = false; 
+  creepShown = false; // Reset creep visibility
+  clearTimeout(creepTimeout); // Clear any existing timeout
 }
 
 function pageThree() {
   pageThreeOn = true;
-  pageTwoOn = false; // Reset pageTwoOn when going to pageThree
-  overlayShown = false; // Reset overlay when switching pages
-}
-
-function fadeInImage(img) {
-  let opacity = 0;
-  const interval = setInterval(() => {
-    opacity += 0.05;
-    if (opacity >= 1) {
-      opacity = 1;
-      clearInterval(interval);
-    }
-    background(0); // Clear the background
-    tint(255, opacity * 255); // Apply the opacity
-    image(img, 0, 0, width, height); // Draw the image
-  }, 50); // Adjust the interval time for the fade-in effect
-}
-
-function fadeOutAndChangeImage(newImage) {
-  let opacity = 1;
-  const interval = setInterval(() => {
-    opacity -= 0.05;
-    if (opacity <= 0) {
-      opacity = 0;
-      clearInterval(interval);
-      // Change to the new image and fade it in
-      fadeInImage(newImage);
-    }
-    background(0); // Clear the background
-    tint(255, opacity * 255); // Apply the opacity
-    image(pageTwoImage, 0, 0, width, height); // Draw the current image
-  }, 50); // Adjust the interval time for the fade-out effect
+  pageTwoOn = false; 
+  overlayShown = false; 
+  creepShown = false; // Reset creep visibility
+  clearTimeout(creepTimeout); // Clear any existing timeout
 }
